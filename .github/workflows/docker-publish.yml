@@ -193,6 +193,9 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
+      - name: Install dependencies
+        run: uv sync --all-extras
+
       - name: Health check
         run: |
           #!/bin/bash
@@ -217,3 +220,8 @@ jobs:
 
           echo "Timeout reached. Health endpoint did not respond within 3 minutes."
           exit 1
+
+      - name: Run tests
+        env:
+          NOMAD_CONFIG: "tests/nomad.yaml"
+        run: uv run pytest -sv tests
