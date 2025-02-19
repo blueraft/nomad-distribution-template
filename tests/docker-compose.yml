@@ -68,7 +68,6 @@ services:
 
   keycloak:
     image: gitlab-registry.mpcdf.mpg.de/nomad-lab/nomad-test-keycloak:latest
-    #image: quay.io/keycloak/keycloak:26.1
     platform: linux/amd64
     container_name: keycloak
     environment:
@@ -83,9 +82,6 @@ services:
       - start-dev
       - --import-realm
       - --verbose
-    # volumes:
-    #   - ./import:/opt/keycloak/data/import
-    #   - ./healthcheck_keycloak.sh:/opt/keycloak/bin/healthcheck_keycloak.sh
     ports:
       - 8080:8080
     healthcheck:
