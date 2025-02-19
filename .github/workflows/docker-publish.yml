@@ -179,9 +179,11 @@ jobs:
           ref: ${{ github.head_ref || github.ref_name }}
           submodules: true
       - name: Test
+        working-directory: tests
         run: |
           docker pull ${{ env.APP_IMAGE }} -q
           docker compose up -d --quiet-pull
+
       - name: Install uv
         uses: astral-sh/setup-uv@v5
         with:
@@ -193,4 +195,25 @@ jobs:
 
       - name: Health check
         run: |
-          curl --retry 5 --retry-delay 2 http://localhost/health
+          #!/bin/bash
+          set -e # Exit immediately if a command exits with a non-zero status.
+
+          secs=180                           # Set interval (duration) in seconds.
+          endTime=$(( $(date +%s) + secs )) # Calculate end time.
+
+          check_health() {
+              curl -s localhost:8000/-/health > /dev/null
+          }
+
+          while [ $(date +%s) -lt $endTime ]; do  # Loop until interval has elapsed.
+               if check_health; then
+                echo "Health endpoint is responding correctly."
+                exit 0
+              else
+                echo "Health endpoint is not responding. Retrying in 10 seconds..."
+                sleep 10
+              fi
+          done
+
+          echo "Timeout reached. Health endpoint did not respond within 3 minutes."
+          exit 1

@@ -1,0 +1,3 @@
+keycloak:
+  server_url: "http://keycloak:8080/"
+  realm_name: "fairdi_nomad_test"
