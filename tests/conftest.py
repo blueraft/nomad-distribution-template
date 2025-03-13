@@ -1,5 +1,5 @@
-from nomad.config import config
 import pytest
+from nomad.config import config
 
 
 @pytest.fixture(scope="session")
@@ -9,5 +9,4 @@ def auth():
     return Auth(
         user=config.client.user,
         password=config.client.password,
-        from_api=True,
     )
