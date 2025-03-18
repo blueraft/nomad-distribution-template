@@ -216,7 +216,7 @@ In addition to unit tests, the pipeline also verifies that all example uploads c
 
 For example upload tests, the CI uses the image built in the Build Image step. It then runs the Docker container and starts up the application to confirm that it functions correctly. This approach ensures that if the pipeline passes, the app is more likely to run smoothly in a Dockerized environment on a server, not just locally.
 
-If you need to disable tests for specific plugins, update the PLUGIN_TESTS_PLUGINS_TO_SKIP variable in .github/workflows/docker-publish.yaml by adding the plugin names to the existing list.
+If you need to disable tests for specific plugins, update the **PLUGIN_TESTS_PLUGINS_TO_SKIP** variable in [.github/workflows/docker-publish.yml](./.github/workflows/docker-publish.yml#L19) by adding the plugin names to the existing list.
 
 ## Set Up Regular Package Updates with Dependabot
 
