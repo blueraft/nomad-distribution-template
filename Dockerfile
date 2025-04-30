@@ -5,7 +5,7 @@
 # https://docs.docker.com/engine/reference/builder/
 
 ARG PYTHON_VERSION=3.12
-ARG UV_VERSION=0.6
+ARG UV_VERSION=0.7
 
 
 FROM ghcr.io/astral-sh/uv:${UV_VERSION} AS uv_image
