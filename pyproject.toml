@@ -61,7 +61,7 @@ plugins = [
   "nomad-plugin-crystal-llm",
 ]
 jupyter = []
-workflows = ["nomad-plugin-crystal-llm[gpu-workflow]"]
+workflows = ["nomad-plugin-crystal-llm[gpu-workflow]", "torch"]
 dev = ["nomad-lab[parsing, infrastructure, dev]>=1.3.4"]
 
 [tool.uv]
@@ -72,6 +72,12 @@ constraint-dependencies = ["hyperspy>=1.7.6"]
 
 [tool.uv.sources]
 nomad-plugin-crystal-llm = { git = "https://github.com/blueraft/nomad-plugin-crystal-llm.git", rev = "add-nomad-schema" }
+torch = [{ index = "pytorch-cpu", extra = "workflows" }]
 
 [tool.setuptools.packages.find]
 exclude = ["gui*", "docs*", "config*"]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
