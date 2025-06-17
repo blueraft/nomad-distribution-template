@@ -105,7 +105,7 @@ RUN set -ex && \
 RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=uv.lock,target=uv.lock \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv run --with nomad-docs --directory docs mkdocs build \
+    uv run --with nomad-docs python -c 'import subprocess; subprocess.run(["mkdocs", "build"], cwd="docs", check=True)' \
     && mkdir -p built_docs \
     && cp -r docs/site/* built_docs
 
