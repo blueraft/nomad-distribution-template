@@ -20,7 +20,10 @@ dynamic = ["version"]
 readme = "README.md"
 requires-python = ">=3.10, <3.13"
 license = { file = "LICENSE" }
-dependencies = ["nomad-lab[parsing, infrastructure]>=1.3.4", "setuptools"]
+dependencies = [
+  "nomad-lab[parsing, infrastructure]==1.3.17.dev114+g95cfe8aaf",
+  "setuptools",
+]
 
 
 [project.urls]
@@ -66,7 +69,6 @@ extra-index-url = [
   "https://gitlab.mpcdf.mpg.de/api/v4/projects/2187/packages/pypi/simple",
 ]
 constraint-dependencies = ["hyperspy>=1.7.6"]
-prerelease = "disallow"
 
 [tool.uv.sources]
 nomad-plugin-crystal-llm = { git = "https://github.com/blueraft/nomad-plugin-crystal-llm.git", rev = "add-nomad-schema" }
