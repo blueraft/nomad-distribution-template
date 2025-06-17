@@ -127,13 +127,13 @@ services:
     image: ghcr.io/fairmat-nfdi/nomad-distro-template/workflow:main
     platform: linux/amd64
     container_name: nomad_oasis_gpu_worker
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all # Use all available GPUs
-              capabilities: [gpu]
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all # Use all available GPUs
+    #           capabilities: [gpu]
     environment:
       NOMAD_SERVICE: nomad_oasis_gpu_worker
       NOMAD_RABBITMQ_HOST: rabbitmq
